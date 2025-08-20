@@ -1,6 +1,6 @@
 #pragma once
 
-#define COLOR_STYLE(color) "\033["color "m"
+#define COLOR_STYLE(color) "\033[" color "m"
 #define RESET_COLOR COLOR_STYLE("0")
 #define ERROR_COLOR COLOR_STYLE("31")
 #define SUCCESS_COLOR COLOR_STYLE("32")

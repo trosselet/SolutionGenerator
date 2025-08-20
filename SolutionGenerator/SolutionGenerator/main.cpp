@@ -5,6 +5,7 @@
 
 #include "main.h"
 #include "Settings.h"
+#include "SolutionGenerator.h"
 
 
 int Help(int argc, char* argv[])
@@ -112,7 +113,7 @@ int main(int argc, char* argv[])
 	}
 
 	std::string const& userAction = argv[1];
-	if (userAction == "-create") return 0;
+	if (userAction == "-create") return Create(argc, argv);
 	if (userAction == "-help") return 0;
 
 
