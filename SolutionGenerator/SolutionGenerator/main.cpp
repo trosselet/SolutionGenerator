@@ -66,7 +66,7 @@ int Create(int argc, char* argv[])
 
 	}
 
-	CHECK_FOR_ERRORS(CreateRepository(repositoryName, solutionName, projectName, pch, vcpkg, win, lib));
+	CHECK_FOR_ERROR(CreateRepository(repositoryName, solutionName, projectName, pch, vcpkg, win, lib));
 
 	return 0;
 }
