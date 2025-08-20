@@ -135,6 +135,33 @@ namespace SolutionGenerator
     }
     int CreateProjectConfig(std::string const& repositoryName, std::string const& projectName, bool startup, bool pch, bool vcpkg, bool lib, bool window)
     {
+        std::string const configFilePath = repositoryName + "/config/settings.json";
+        std::ifstream configFile(configFilePath);
+
+        nlohmann::json jsonSettings = nlohmann::json::parse(configFile);
+        configFile.close();
+
+        ERROR_IF(jsonSettings["projects"].contains(projectName), "Project " + (projectName)+" already exist in this repository (" + (repositoryName)+")\n");
+
+        if (vcpkg) CHECK_FOR_ERROR(CreateVcpkgJson(repositoryName; projectName));
+
+        std::string guid = GenerateGuid();
+
+        jsonSettings["projects"][projectName] = nlohmann::json::parse(PROJECT_CONFIG);
+        jsonSettings["projects"][projectName]["guid"] = guid;
+        jsonSettings["projects"][projectName]["pch"] = pch;
+        jsonSettings["projects"][projectName]["vcpkg"] = vcpkg;
+        jsonSettings["projects"][projectName]["lib"] = lib;
+        jsonSettings["projects"][projectName]["window"] = window;
+
+        std::ofstream settingsFileWrite(configFilePath);
+        settingsFileWrite << std::setw(4) << jsonSettings;
+        settingsFileWrite.close();
+
+        std::cout << SUCCESS_COLOR "Project (" + projectName + ") successfully added to settings.json\n" RESET_COLOR;
+
+        if (startup) CHECK_FOR_ERROR(EditProperties(repositoryName, projectName, std::vector<std::string>(), true, false, false, false, false))
+
         return 0;
     }
     int CreateProjectSrc(std::string const& repositoryName, std::string const& projectName, bool pch, bool lib, bool window)

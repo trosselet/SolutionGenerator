@@ -35,6 +35,98 @@
     "}"
 
 
+#define PCH_H \
+    "#ifndef PCH_H"                          "\n"\
+    "#define PCH_H"                          "\n"\
+    ""                                       "\n"\
+    "#include <iostream>"                    "\n"\
+    ""                                       "\n"\
+    "#endif"
+
+#define PCH_H_WINDOW \
+    "#ifndef PCH_H"                          "\n"\
+    "#define PCH_H"                          "\n"\
+    ""                                       "\n"\
+    "#include <windows.h>"                   "\n"\
+    ""                                       "\n"\
+    "#endif"
+
+#define PCH_CPP \
+    "#include \"pch.h\""                     "\n"\
+    ""
+
+
+
+#define MAIN_H \
+    "#ifndef MAIN_H"                         "\n"\
+    "#define MAIN_H"                         "\n"\
+    ""                                       "\n"\
+    ""                                       "\n"\
+    ""                                       "\n"\
+    "#endif"
+
+#define MAIN_CPP \
+    "#include <iostream>"                    "\n"\
+    "#include \"main.h\""                    "\n"\
+    ""                                       "\n"\
+    "int main()"                             "\n"\
+    "{"                                      "\n"\
+    "    std::cout << \"Hello, World!\\n\";" "\n"\
+    "    return 0;"                          "\n"\
+    "}"
+
+#define MAIN_CPP_PCH \
+    "#include \"pch.h\""                     "\n"\
+    "#include \"main.h\""                    "\n"\
+    ""                                       "\n"\
+    "int main()"                             "\n"\
+    "{"                                      "\n"\
+    "    std::cout << \"Hello, World!\\n\";" "\n"\
+    "    return 0;"                          "\n"\
+    "}"
+
+#define MAIN_CPP_WINDOW \
+    "#include <windows.h>"                                                                 "\n"\
+    "#include \"main.h\""                                                                  "\n"\
+    ""                                                                                     "\n"\
+    "int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR cmdLine, int cmdShow)" "\n"\
+    "{"                                                                                    "\n"\
+    "    return 0;"                                                                        "\n"\
+    "}"
+
+#define MAIN_CPP_PCH_WINDOW \
+    "#include \"pch.h\""                                                                   "\n"\
+    "#include \"main.h\""                                                                  "\n"\
+    ""                                                                                     "\n"\
+    "int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR cmdLine, int cmdShow)" "\n"\
+    "{"                                                                                    "\n"\
+    "    return 0;"                                                                        "\n"\
+    "}"
+
+
+
+#define VCPKG_CONFIGURATION \
+    "{"                                                                                                    "\n"\
+    "    \"default-registry\": {"                                                                          "\n"\
+    "        \"baseline\": \"5a3e638f449206ac10f82f2171a21333004d7306\","                                  "\n"\
+    "        \"kind\": \"git\","                                                                           "\n"\
+    "        \"repository\": \"https://github.com/microsoft/vcpkg\""                                       "\n"\
+    "    },"                                                                                               "\n"\
+    "    \"registries\": ["                                                                                "\n"\
+    "        {"                                                                                            "\n"\
+    "            \"kind\": \"artifact\","                                                                      "\n"\
+    "            \"location\": \"https://github.com/microsoft/vcpkg-ce-catalog/archive/refs/heads/main.zip\"," "\n"\
+    "            \"name\": \"microsoft\""                                                                      "\n"\
+    "        }"                                                                                            "\n"\
+    "    ]"                                                                                                "\n"\
+    "}"
+
+#define VCPKG_JSON \
+    "{"                                      "\n"\
+    "    \"dependencies\": []"               "\n"\
+    "}"
+
+
 #define ERROR_IF( function, message ) \
     if ( function )\
     {\
