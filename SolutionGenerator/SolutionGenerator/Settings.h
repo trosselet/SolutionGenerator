@@ -13,4 +13,8 @@
 		return 1; \
 	} \
 
+#define CHECK_FOR_ERRORS(function) \
+	if (SolutionGenerator::function != 0) \
+		return 1; \
+
 #endif // !SETTINGS__H
